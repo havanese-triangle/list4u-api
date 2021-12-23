@@ -1,4 +1,4 @@
-package com.havitri.list4u
+package com.havitri.list4u.api
 
 import com.havitri.list4u.api.Item
 import spock.lang.Specification

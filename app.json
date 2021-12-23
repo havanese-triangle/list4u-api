@@ -1,0 +1,6 @@
+{
+  "name": "List 4 U",
+  "description": "A simple list API",
+  "image": "heroku/gradle",
+  "addons": [ "heroku-postgresql" ]
+}

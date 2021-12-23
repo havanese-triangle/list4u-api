@@ -1,0 +1,42 @@
+buildscript {
+	ext {
+		springBootVersion = '2.3.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.havtri'
+version = '1.0'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.codehaus.groovy:groovy-all:3.0.9'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	testImplementation platform("org.spockframework:spock-bom:2.0-groovy-2.5")
+	testImplementation "org.spockframework:spock-core"
+
+	// optional dependencies for using Spock
+	testImplementation "org.hamcrest:hamcrest-core:2.2"   // only necessary if Hamcrest matchers are used
+	testRuntimeOnly "net.bytebuddy:byte-buddy:1.11.0" // allows mocking of classes (in addition to interfaces)
+	testRuntimeOnly "org.objenesis:objenesis:3.2"
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}

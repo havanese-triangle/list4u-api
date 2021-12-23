@@ -12,6 +12,7 @@ class ListView {
     static ListView from(ListEntity list) {
         def listView = new ListView()
         listView.id = list.id
+        listView.name = list.name
         def categoryNames = [] as Set
         list.items.each {
             def name = it.item?.category?.name

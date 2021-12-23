@@ -1,8 +1,8 @@
-package com.havitri.list4u.api
+package com.havitri.list4u.api.grocery
 
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface ItemRepository extends CrudRepository<Item, Long> {
+interface GroceryItemRepository extends CrudRepository<GroceryItem, Long> {
 }

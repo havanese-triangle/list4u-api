@@ -1,4 +1,4 @@
-package com.havitri.list4u.api
+package com.havitri.list4u.api.grocery
 
 
 import groovy.json.JsonGenerator
@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class ListController {
+class GroceryListController {
 
     @Autowired
-    ItemRepository itemRepository
+    GroceryItemRepository itemRepository
 
     JsonGenerator jsonGenerator = new JsonGenerator.Options()
             .excludeNulls()
@@ -19,14 +19,14 @@ class ListController {
 
     @GetMapping("/list")
     String getGame() {
-        def list = [ new Item(id: 1, name: "Item")]
+        def list = [ new GroceryItem(id: 1, name: "Item")]
         def json = jsonGenerator.toJson(list)
         json
     }
 
     @GetMapping("/item")
     String getItem() {
-        def item = itemRepository.save(new Item(name: "GENERATED"))
+        def item = itemRepository.save(new GroceryItem(name: "GENERATED"))
         jsonGenerator.toJson(item)
     }
 

@@ -8,9 +8,9 @@ class ItemEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinColumn(name = "categoryId")
-    ItemCategoryEntity category
+    CategoryEntity category
 
     String name
 }

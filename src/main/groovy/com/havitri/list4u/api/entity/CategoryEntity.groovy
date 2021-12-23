@@ -5,8 +5,8 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 
-@Entity(name = "item_category")
-class ItemCategoryEntity {
+@Entity(name = "category")
+class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id

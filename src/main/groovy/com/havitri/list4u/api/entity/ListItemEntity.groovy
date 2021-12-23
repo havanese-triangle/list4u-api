@@ -14,5 +14,9 @@ class ListItemEntity {
     @JoinColumn(name = "listId")
     ListEntity list
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "itemId")
+    ItemEntity item
+
     ItemState state = ItemState.TODO
 }

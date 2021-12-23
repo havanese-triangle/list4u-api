@@ -1,7 +1,6 @@
 package com.havitri.list4u.api.view
 
-import com.havitri.list4u.api.entity.ItemEntity
-import com.havitri.list4u.api.entity.ItemRepository
+
 import com.havitri.list4u.api.entity.ListEntity
 import com.havitri.list4u.api.entity.ListRepository
 import groovy.json.JsonGenerator

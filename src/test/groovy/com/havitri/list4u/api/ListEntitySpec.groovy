@@ -1,13 +1,13 @@
 package com.havitri.list4u.api
 
-import com.havitri.list4u.api.grocery.GroceryItem
+import com.havitri.list4u.api.entity.ItemEntity
 import spock.lang.Specification
 
-class GroceryListSpec extends Specification {
+class ListEntitySpec extends Specification {
 
     def "nothing interesting"() {
         given:
-        def item = new GroceryItem()
+        def item = new ItemEntity()
 
         when:
         item.id = 1

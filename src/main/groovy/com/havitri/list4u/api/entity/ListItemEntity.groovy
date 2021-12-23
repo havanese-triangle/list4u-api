@@ -1,4 +1,6 @@
-package com.havitri.list4u.api.grocery
+package com.havitri.list4u.api.entity
+
+import com.havitri.list4u.api.ItemState
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -7,15 +9,15 @@ import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
-@Entity
-class GroceryItem {
+@Entity(name = "list_item")
+class ListItemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id
 
     @ManyToOne
-    @JoinColumn(name = "categoryId")
-    GroceryItemCategory category
+    @JoinColumn(name = "listId")
+    ListEntity list
 
-    String name
+    ItemState state = ItemState.TODO
 }

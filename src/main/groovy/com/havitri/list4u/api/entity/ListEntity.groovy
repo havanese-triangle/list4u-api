@@ -1,4 +1,4 @@
-package com.havitri.list4u.api.grocery
+package com.havitri.list4u.api.entity
 
 import javax.persistence.CascadeType
 import javax.persistence.Entity
@@ -8,8 +8,8 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.OneToMany
 
-@Entity
-class GroceryList {
+@Entity(name = "list")
+class ListEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,5 +18,5 @@ class GroceryList {
     String name
 
     @OneToMany(mappedBy = "list", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    Set<GroceryListItem> items = []
+    Set<ListItemEntity> items = []
 }

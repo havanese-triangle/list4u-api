@@ -43,7 +43,8 @@ class ListController {
             log.warn("No lists found adding default 'Grocery' list")
             list = repository.save(list)
         }
-        def json = jsonGenerator.toJson(list)
+        def listView = ListView.from(list)
+        def json = jsonGenerator.toJson(listView)
         json
     }
 
@@ -57,25 +58,9 @@ class ListController {
         def listItemEntity = new ListItemEntity(item: itemEntity, list: list)
         list.items << listItemEntity
         list = repository.save(list)
-        def listView = new ListView()
-        listView.id = list.id
-        def categoryNames = [] as Set
-        list.items.each {
-            def name = it.item?.category?.name
-            if(name) {
-                categoryNames << name
-            }
-        }
-        categoryNames.each { categoryName ->
-            def matches = list.items.findAll { listItem ->
-                listItem?.item?.category?.name == categoryName
-            }
-            def items = matches.stream().map {
-                new ListItem(id: it.id, name: it.item.name, state: it.state)
-            }.collect(Collectors.toList())
-            listView.categories << new Category(items: items)
-        }
+        def listView = ListView.from(list)
         def json = jsonGenerator.toJson(listView)
         json
     }
+
 }

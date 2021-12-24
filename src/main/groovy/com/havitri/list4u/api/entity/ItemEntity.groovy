@@ -13,4 +13,13 @@ class ItemEntity {
     CategoryEntity category
 
     String name
+
+    @Column(unique = true)
+    String uname
+
+    void setName(String name) {
+        this.name = name
+        this.uname = name?.toUpperCase()
+    }
+
 }

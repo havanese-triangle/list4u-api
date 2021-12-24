@@ -21,7 +21,7 @@ class ItemsView {
             def availableItems = matches.stream().map {
                 new AvailableItem(id: it.id, name: it.name)
             }.collect(Collectors.toList())
-            itemsView.categories << new CategoryView(items: availableItems, name: category.name)
+            itemsView.categories << new CategoryView(items: availableItems, name: category.name, id: category.id)
         }
         itemsView
     }

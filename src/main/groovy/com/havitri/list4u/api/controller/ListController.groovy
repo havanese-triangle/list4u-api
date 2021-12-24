@@ -31,7 +31,8 @@ class ListController {
     @PostMapping("/list/{id}/item")
     String addItem(@PathVariable Long id, @RequestBody ItemAdd item) {
         log.info("Adding item to list $id")
-        def list = listService.addItem(id, item.categoryName, item.name)
+        log.warn("'id' is currently being ignored since there is only one list")
+        def list = listService.addItem(item.categoryName, item.name)
         def listView = ListView.from(list)
         def json = jsonGenerator.toJson(listView)
         json

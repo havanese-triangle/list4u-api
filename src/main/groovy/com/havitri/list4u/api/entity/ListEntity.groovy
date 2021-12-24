@@ -11,6 +11,14 @@ class ListEntity {
 
     String name
 
+    @Column(unique = true)
+    String uname
+
+    void setName(String name) {
+        this.name = name
+        this.uname = name?.toUpperCase()
+    }
+
     @OneToMany(mappedBy = "list", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Set<ListItemEntity> items = []
 }

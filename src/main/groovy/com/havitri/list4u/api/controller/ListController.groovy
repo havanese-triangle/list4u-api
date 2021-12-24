@@ -32,7 +32,16 @@ class ListController {
     String addItem(@PathVariable Long id, @RequestBody ItemAdd item) {
         log.info("Adding item to list $id")
         log.warn("'id' is currently being ignored since there is only one list")
-        def list = listService.addItem(item.categoryName, item.name)
+        def list
+        if(item.itemId) {
+            list = listService.addItem(item.itemId)
+        }
+        else if(item.categoryId) {
+            list = listService.addNewItem(item.name, item.categoryId)
+        }
+        else {
+            list = listService.addNewItemAndNewCategory(item.categoryName, item.name)
+        }
         def listView = ListView.from(list)
         def json = jsonGenerator.toJson(listView)
         json

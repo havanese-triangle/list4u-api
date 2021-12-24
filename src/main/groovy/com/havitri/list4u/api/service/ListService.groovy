@@ -20,6 +20,25 @@ class ListService {
         lists.empty ? repository.save(new ListEntity(name: "Grocery")) : lists[0]
     }
 
+    ListEntity addItem(Long listId, Long itemId) {
+        def listOptional = repository.findById(listId)
+        def list = listOptional.orElse(repository.save(new ListEntity(name: "Grocery*")))
+        def itemEntity = itemRepository.findById(itemId).get()
+        def listItemEntity = new ListItemEntity(item: itemEntity, list: list)
+        list.items << listItemEntity
+        repository.save(list)
+    }
+
+    ListEntity addItem(Long listId, Long categoryId, String name) {
+        def listOptional = repository.findById(listId)
+        def list = listOptional.orElse(repository.save(new ListEntity(name: "Grocery*")))
+        def categoryEntity = categoryRepository.findById(categoryId).get()
+        def itemEntity = itemRepository.save(new ItemEntity(name: name, category: categoryEntity))
+        def listItemEntity = new ListItemEntity(item: itemEntity, list: list)
+        list.items << listItemEntity
+        repository.save(list)
+    }
+
     ListEntity addItem(Long listId, String categoryName, String name) {
         def listOptional = repository.findById(listId)
         def list = listOptional.orElse(repository.save(new ListEntity(name: "Grocery*")))

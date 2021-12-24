@@ -1,7 +1,9 @@
-package com.havitri.list4u.api.view
+package com.havitri.list4u.api.controller
 
 
 import com.havitri.list4u.api.service.ListService
+import com.havitri.list4u.api.view.ItemAdd
+import com.havitri.list4u.api.view.ListView
 import groovy.json.JsonGenerator
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired

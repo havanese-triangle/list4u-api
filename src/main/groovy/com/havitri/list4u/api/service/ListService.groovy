@@ -1,12 +1,6 @@
 package com.havitri.list4u.api.service
 
-import com.havitri.list4u.api.entity.CategoryEntity
-import com.havitri.list4u.api.entity.CategoryRepository
-import com.havitri.list4u.api.entity.ItemEntity
-import com.havitri.list4u.api.entity.ItemRepository
-import com.havitri.list4u.api.entity.ListEntity
-import com.havitri.list4u.api.entity.ListItemEntity
-import com.havitri.list4u.api.entity.ListRepository
+import com.havitri.list4u.api.entity.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

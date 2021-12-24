@@ -16,7 +16,7 @@ class ListView {
         def categoryNames = [] as Set
         list.items.each {
             def name = it.item?.category?.name
-            if(name) {
+            if (name) {
                 categoryNames << name
             }
         }

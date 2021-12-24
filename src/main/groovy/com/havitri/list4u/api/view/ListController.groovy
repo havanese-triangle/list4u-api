@@ -1,21 +1,11 @@
 package com.havitri.list4u.api.view
 
-import com.havitri.list4u.api.entity.CategoryEntity
-import com.havitri.list4u.api.entity.CategoryRepository
-import com.havitri.list4u.api.entity.ItemEntity
-import com.havitri.list4u.api.entity.ItemRepository
-import com.havitri.list4u.api.entity.ListEntity
-import com.havitri.list4u.api.entity.ListItemEntity
-import com.havitri.list4u.api.entity.ListRepository
+
 import com.havitri.list4u.api.service.ListService
 import groovy.json.JsonGenerator
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @Slf4j
 @RestController

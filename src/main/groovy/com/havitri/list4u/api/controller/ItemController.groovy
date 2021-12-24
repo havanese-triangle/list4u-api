@@ -27,4 +27,10 @@ class ItemController {
         json
     }
 
+    @PatchMapping("/item/{id}")
+    String changeName(@PathVariable Long id, @RequestBody String newName) {
+        def item = itemRepository.findById(id).get()
+        item.name = newName
+        itemRepository.save(item).name
+    }
 }

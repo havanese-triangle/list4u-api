@@ -3,7 +3,9 @@ package com.havitri.list4u.api.service
 import com.havitri.list4u.api.entity.*
 import com.havitri.list4u.api.repository.CategoryRepository
 import com.havitri.list4u.api.repository.ItemRepository
+import com.havitri.list4u.api.repository.ListItemRepository
 import com.havitri.list4u.api.repository.ListRepository
+import com.havitri.list4u.api.view.ListItem
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -19,6 +21,9 @@ class ListService {
 
     @Autowired
     ItemRepository itemRepository
+
+    @Autowired
+    ListItemRepository listItemRepository
 
     ListEntity get() {
         def lists = repository.findAll()
@@ -63,6 +68,7 @@ class ListService {
         def list = get()
         def item = list.items.find { it.item.id == itemId }
         list.items.remove(item)
+        listItemRepository.delete(item)
         repository.save(list)
     }
 }

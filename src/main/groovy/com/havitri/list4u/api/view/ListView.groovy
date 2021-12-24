@@ -25,7 +25,7 @@ class ListView {
                 listItem?.item?.category?.name == categoryName
             }
             def items = matches.stream().map {
-                new ListItem(id: it.id, name: it.item.name, state: it.state)
+                new ListItem(id: it.item.id, name: it.item.name, state: it.state)
             }.collect(Collectors.toList())
             listView.categories << new Category(items: items, name: categoryName)
         }

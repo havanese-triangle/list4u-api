@@ -7,6 +7,7 @@ import com.havitri.list4u.api.entity.ItemRepository
 import com.havitri.list4u.api.entity.ListEntity
 import com.havitri.list4u.api.entity.ListItemEntity
 import com.havitri.list4u.api.entity.ListRepository
+import com.havitri.list4u.api.service.ListService
 import groovy.json.JsonGenerator
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,20 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
-import java.util.stream.Collectors
-
 @Slf4j
 @RestController
 class ListController {
 
     @Autowired
-    ListRepository repository
-
-    @Autowired
-    CategoryRepository categoryRepository
-
-    @Autowired
-    ItemRepository itemRepository
+    ListService listService
 
     JsonGenerator jsonGenerator = new JsonGenerator.Options()
             .excludeNulls()
@@ -37,12 +30,7 @@ class ListController {
 
     @GetMapping("/")
     String getList() {
-        def lists = repository.findAll()
-        def list = lists.empty ? new ListEntity(name: "Grocery") : lists[0]
-        if(!list.id) {
-            log.warn("No lists found adding default 'Grocery' list")
-            list = repository.save(list)
-        }
+        def list = listService.get()
         def listView = ListView.from(list)
         def json = jsonGenerator.toJson(listView)
         json
@@ -51,13 +39,7 @@ class ListController {
     @PostMapping("/list/{id}/item")
     String addItem(@PathVariable Long id, @RequestBody ItemAdd item) {
         log.info("Adding item to list $id")
-        def listOptional = repository.findById(id)
-        def list = listOptional.orElse(new ListEntity(name: "Grocery*"))
-        def categoryEntity = categoryRepository.save(new CategoryEntity(name: item.categoryName))
-        def itemEntity = itemRepository.save(new ItemEntity(name: item.name, category: categoryEntity))
-        def listItemEntity = new ListItemEntity(item: itemEntity, list: list)
-        list.items << listItemEntity
-        list = repository.save(list)
+        def list = listService.addItem(id, item.categoryName, item.name)
         def listView = ListView.from(list)
         def json = jsonGenerator.toJson(listView)
         json

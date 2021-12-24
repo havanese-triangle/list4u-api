@@ -58,4 +58,11 @@ class ListService {
         list.items << listItemEntity
         repository.save(list)
     }
+
+    ListEntity removeItem(Long itemId) {
+        def list = get()
+        def item = list.items.find { it.item.id == itemId }
+        list.items.remove(item)
+        repository.save(list)
+    }
 }

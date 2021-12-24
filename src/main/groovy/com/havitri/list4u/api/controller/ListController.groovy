@@ -47,4 +47,12 @@ class ListController {
         json
     }
 
+    @DeleteMapping("/list/{id}/item/{itemId}")
+    String removeItem(@PathVariable Long id, @PathVariable Long itemId) {
+        log.info("Removing item ${itemId} from list $id")
+        def list = listService.removeItem(itemId)
+        def listView = ListView.from(list)
+        def json = jsonGenerator.toJson(listView)
+        json
+    }
 }

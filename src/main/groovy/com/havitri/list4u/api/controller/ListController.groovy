@@ -20,6 +20,7 @@ class ListController {
             .excludeNulls()
             .build()
 
+    @CrossOrigin
     @GetMapping(value = "/", produces = "application/json")
     String getList() {
         def list = listService.get()

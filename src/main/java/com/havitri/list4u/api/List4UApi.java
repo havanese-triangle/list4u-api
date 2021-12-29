@@ -12,12 +12,4 @@ public class List4UApi {
         SpringApplication.run(List4UApi.class, args);
     }
 
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**");
-            }
-        };
-    }
 }

@@ -20,7 +20,7 @@ class ListController {
             .excludeNulls()
             .build()
 
-    @GetMapping("/")
+    @GetMapping(value = "/", produces = "application/json")
     String getList() {
         def list = listService.get()
         def listView = ListView.from(list)
